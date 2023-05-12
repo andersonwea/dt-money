@@ -17,7 +17,7 @@ interface SummaryCardProps {
 }
 
 export const SummaryCard = styled.div<SummaryCardProps>`
-  background-color: ${props => props.theme['gray-600']};
+  background-color: ${(props) => props.theme['gray-600']};
   padding: 2rem;
   border-radius: 6px;
 
@@ -29,13 +29,17 @@ export const SummaryCard = styled.div<SummaryCardProps>`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    color: ${(props) => props.theme['gray-300']};
   }
 
   strong {
     font-size: 2rem;
   }
 
-  ${props => props.variant === 'green' && css`
-    background-color: ${props.theme['green-500']}
-  `}
+  ${(props) =>
+    props.variant === 'green' &&
+    css`
+      background-color: ${props.theme['green-500']};
+    `}
 `

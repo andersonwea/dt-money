@@ -1,5 +1,5 @@
-import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from "phosphor-react";
-import { SummaryCard, SummaryContainer } from "./styles";
+import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from 'phosphor-react'
+import { SummaryCard, SummaryContainer } from './styles'
 
 export function Summary() {
   return (
@@ -16,7 +16,7 @@ export function Summary() {
       <SummaryCard>
         <header>
           <span>Saídas</span>
-          <ArrowCircleDown size={32} color="#F75a68"/>
+          <ArrowCircleDown size={32} color="#F75a68" />
         </header>
 
         <strong>R$ 17.400,00</strong>
@@ -25,7 +25,7 @@ export function Summary() {
       <SummaryCard variant="green">
         <header>
           <span>Total</span>
-          <CurrencyDollar size={32} color="#fff"/>
+          <CurrencyDollar size={32} color="#fff" />
         </header>
 
         <strong>R$ 17.400,00</strong>
