@@ -5,7 +5,7 @@
       "description": "Desenvolvimento de site",
       "type": "income",
       "category": "Venda",
-      "price": "14000",
+      "price": 14000,
       "createdAt": "2023-05-13T17:00:05.661Z"
     },
     {
@@ -13,7 +13,7 @@
       "description": "Hamburguer",
       "type": "outcome",
       "category": "Alimentação",
-      "price": "49",
+      "price": 49,
       "createdAt": "2023-05-13T16:30:05.661Z"
     }
   ]
