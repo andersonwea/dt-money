@@ -6,7 +6,7 @@
       "type": "income",
       "category": "Venda",
       "price": "14000",
-      "createAt": "2023-05-13T17:00:05.661Z"
+      "createdAt": "2023-05-13T17:00:05.661Z"
     },
     {
       "id": 2,
@@ -14,7 +14,7 @@
       "type": "outcome",
       "category": "Alimentação",
       "price": "49",
-      "createAt": "2023-05-13T16:30:05.661Z"
+      "createdAt": "2023-05-13T16:30:05.661Z"
     }
   ]
 }
