@@ -11,28 +11,34 @@ import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react'
 
 import { Controller, useForm } from 'react-hook-form'
 import * as z from 'zod'
+import { useContext } from 'react'
+import { TransactionsContext } from '../../../contexts/TransactionsContext'
 
 const newFormTransactionSchemma = z.object({
   description: z.string(),
   price: z.number(),
   category: z.string(),
   type: z.enum(['income', 'outcome']),
+  createdAt: z.date(),
 })
 
-type NewFormTransactionForm = z.infer<typeof newFormTransactionSchemma>
+type NewTransactionFormInputs = z.infer<typeof newFormTransactionSchemma>
 
 export function NewTransactionModal() {
   const {
+    reset,
     control,
     register,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<NewFormTransactionForm>()
+  } = useForm<NewTransactionFormInputs>()
 
-  async function handleNewFormTransaction(data: NewFormTransactionForm) {
-    await new Promise((resolve) => setInterval(resolve, 2000))
+  const { createTransaction } = useContext(TransactionsContext)
 
-    console.log(data)
+  async function handleNewFormTransaction(data: NewTransactionFormInputs) {
+    await createTransaction(data)
+
+    reset()
   }
 
   return (
@@ -47,7 +53,11 @@ export function NewTransactionModal() {
             placeholder="Descrição"
             {...register('description')}
           />
-          <input type="number" placeholder="Preço" {...register('price')} />
+          <input
+            type="number"
+            placeholder="Preço"
+            {...register('price', { valueAsNumber: true })}
+          />
           <input
             type="text"
             placeholder="Categoria"
