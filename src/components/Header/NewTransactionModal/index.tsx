@@ -9,19 +9,21 @@ import {
 } from './styles'
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react'
 
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import * as z from 'zod'
 
 const newFormTransactionSchemma = z.object({
   description: z.string(),
   price: z.number(),
   category: z.string(),
+  type: z.enum(['income', 'outcome']),
 })
 
 type NewFormTransactionForm = z.infer<typeof newFormTransactionSchemma>
 
 export function NewTransactionModal() {
   const {
+    control,
     register,
     handleSubmit,
     formState: { isSubmitting },
@@ -52,17 +54,32 @@ export function NewTransactionModal() {
             {...register('category')}
           />
 
-          <TransactionType>
-            <TransactionTypeButton variant="income" value="income">
-              <ArrowCircleUp size={24} />
-              Entrada
-            </TransactionTypeButton>
+          {/* usa-se o controller caso precise incluir uma dado no formulario que 
+          não vem de um elemento de input direto do html */}
+          <Controller
+            control={control}
+            name="type"
+            render={({ field }) => {
+              return (
+                // a propriedade onValueChange dispara sempre que o valor do
+                // radius mudar, a função onChange seta o value para o valor do radius
+                <TransactionType
+                  onValueChange={field.onChange}
+                  value={field.value}
+                >
+                  <TransactionTypeButton variant="income" value="income">
+                    <ArrowCircleUp size={24} />
+                    Entrada
+                  </TransactionTypeButton>
 
-            <TransactionTypeButton variant="outcome" value="outcome">
-              <ArrowCircleDown size={24} />
-              Saída
-            </TransactionTypeButton>
-          </TransactionType>
+                  <TransactionTypeButton variant="outcome" value="outcome">
+                    <ArrowCircleDown size={24} />
+                    Saída
+                  </TransactionTypeButton>
+                </TransactionType>
+              )
+            }}
+          />
 
           <button type="submit" disabled={isSubmitting}>
             Cadastrar
