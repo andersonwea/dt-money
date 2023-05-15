@@ -27,7 +27,6 @@ export function TransactionProvider({ children }: TransactionsProviderProps) {
       const response = await fetch('http://localhost:3333/transactions')
       const data = await response.json()
       setTransactions(data)
-      console.log(data)
     }
 
     loadTransactions()
